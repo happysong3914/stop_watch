@@ -27,6 +27,22 @@ class StopWatchScreen extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(
+            width: 100,
+            height: 200,
+            child: ListView(
+              children: [
+                Text('111'),
+                Text('111'),
+                Text('111'),
+                Text('111'),
+                Text('111'),
+                Text('111'),
+                Text('111'),
+                Text('111'),
+              ],
+            ),
+          ),
           Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
