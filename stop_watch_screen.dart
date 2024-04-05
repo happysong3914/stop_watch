@@ -11,6 +11,8 @@ class StopWatchScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
+
+          Spacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -29,7 +31,8 @@ class StopWatchScreen extends StatelessWidget {
                 child: Icon(Icons.add),
               ),
             ],
-          )
+          ),
+          SizedBox(height: 30,)
         ],
       ),
     );
