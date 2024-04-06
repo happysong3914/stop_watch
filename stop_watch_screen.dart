@@ -1,10 +1,54 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
-class StopWatchScreen extends StatelessWidget {
-  const StopWatchScreen({super.key});
+class StopWatchScreen extends StatefulWidget {
+  @override
+  State<StopWatchScreen> createState() => _StopWatchScreenState();
+}
+
+class _StopWatchScreenState extends State<StopWatchScreen> {
+  //const StopWatchScreen({super.key});
+  Timer? _timer;
+
+  int _time = 0;
+
+  bool _isRunning = false;
+
+  List<String> _lapTimes = [];
+
+  void _clickButton() {
+    _isRunning = !_isRunning;
+    if (_isRunning) {
+      _start();
+    } else {
+      _pause();
+    }
+  }
+
+  void _start() {
+    _timer = Timer.periodic(const Duration(milliseconds: 10), (timer) {
+      setState(() {
+        _time++;
+      });
+    });
+  }
+
+  void _pause() {
+    _timer?.cancel();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    int sec = _time ~/100;
+    String hundredth ='${_time %100}'.padLeft(2,'0');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('스톱워치'),
@@ -19,11 +63,11 @@ class StopWatchScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               Text(
-                '0',
+                '$sec',
                 style: TextStyle(fontSize: 50),
               ),
               Text(
-                '00',
+                '$hundredth',
               ),
             ],
           ),
@@ -53,8 +97,12 @@ class StopWatchScreen extends StatelessWidget {
                 child: Icon(Icons.refresh),
               ),
               FloatingActionButton(
-                onPressed: () {},
-                child: Icon(Icons.play_arrow),
+                onPressed: () {
+                  setState(() {
+                    _clickButton();
+                  });
+                },
+                child: _isRunning ? Icon(Icons.pause) : Icon(Icons.play_arrow),
               ),
               FloatingActionButton(
                 backgroundColor: Colors.green,

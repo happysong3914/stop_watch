@@ -5,9 +5,7 @@ import 'package:flutter/material.dart';
 import 'stop_watch_screen.dart';
 
 void main() {
-  Timer.periodic(Duration(seconds: 1), (timer) {
-    print('!!!');
-  });
+
   
   runApp(const MyApp());
 }
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const StopWatchScreen(),
+      home: StopWatchScreen(),
     );
   }
 }
