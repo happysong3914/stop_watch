@@ -38,6 +38,13 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
     _timer?.cancel();
   }
 
+  void _reset() {
+    _isRunning = false;
+    _timer?.cancel();
+    _lapTimes.clear();
+    _time = 0;
+  }
+
   @override
   void dispose() {
     _timer?.cancel();
@@ -93,7 +100,9 @@ class _StopWatchScreenState extends State<StopWatchScreen> {
             children: [
               FloatingActionButton(
                 backgroundColor: Colors.orange,
-                onPressed: () {},
+                onPressed: () {
+                  _reset();
+                },
                 child: Icon(Icons.refresh),
               ),
               FloatingActionButton(
